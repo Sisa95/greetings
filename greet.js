@@ -1,15 +1,10 @@
 var greetButton = document.querySelector(".btn");
 var greeetCounter = document.querySelector(".counter");
+var clearText = document.querySelector(".text");
 var errorMsg = document.querySelector(".errorMsg");
 var counter = 0;
 var objData;
 
-
-
-var parametr
-if (localStorage['name']){
-    parametr = JSON.parse(localStorage.getItem('name'))
-}
 
 function greet(){
 
@@ -35,7 +30,7 @@ function greet(){
 
         if(textArea == ""){
             
-            errorMsg.style.color = "red";
+        errorMsg.style.color = "red";
         document.querySelector(".text").style.border = "2px solid red"
         errorMsg.innerHTML = "Please Enter Name"
 
@@ -43,6 +38,7 @@ function greet(){
                 errorMsg.style.border = "";
                 errorMsg.style.fontSize = "";
                 errorMsg.innerHTML = "";
+                document.querySelector(".text").style.border = ""
             }, 1000);
             
             return;
@@ -51,6 +47,8 @@ function greet(){
 
         if(language === "english"){
 
+            clearText.value = "";
+
             data.push(textArea)
             
             data.forEach((item)=>{
@@ -58,12 +56,16 @@ function greet(){
             li.innerText = "Hello," + item;
             list.appendChild(li);
             counter++;
+            clearText = ""
             greeetCounter.innerHTML = counter;
+
+
+            
             objData = JSON.stringify(data);
             localStorage.setItem("name", objData)
             })
         } else if(language === "shona"){
-
+            clearText.value = "";
             data.push(textArea)
         
             data.forEach((item)=>{
@@ -71,10 +73,11 @@ function greet(){
             li.innerText = "Mhoro," + item;
             list.appendChild(li);
             counter++;
+            clearText = ""
             greeetCounter.innerHTML = counter;
             })
         } else if(language === "zulu"){
-
+            
             data.push(textArea)
         
             data.forEach((item)=>{
@@ -101,9 +104,7 @@ function greet(){
             errorMsg.innerHTML = ""
         }, 1500);
         
-        return;
     }
-    
 }
 
 greetButton.addEventListener("click", greet)
