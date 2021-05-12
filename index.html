@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Greetings</title>
+  <link rel="stylesheet" href="greet.css">
+</head>
+<body>
+    <div id="greet">
+        <h1>Greetings</h1>
+    </div>
+
+
+    <div class="container">
+      <div class="row">
+        
+        <div class="col-4 col-4-sm">
+          
+          <h2 id="name">Name</h2>
+        </div>
+     
+        <div class="col-8 col-8-sm"> 
+         
+
+        <div class="col-4 col-4-sm">
+          <label for="male"><h2></h2></label>
+        </div> 
+        <div class="col-8 col-8-sm">
+          
+         
+          <input type="radio" id="english" name="language" value="english">
+          <label for="male" class="language" >English</label>
+          <input type="radio" id="shona" name="language" value="shona">
+          <label for="shona" class="language" >Shona</label>
+          <input type="radio" id="zulu" name="language" value="zulu">
+          <label for="zulu" class="language" >isiZulu</label>
+
+          </div>
+
+          
+          <textarea class="text" cols="5" rows="2"></textarea>
+          <button type="button" class="btn">Greet</button>
+          <div style="margin-top:0px;">
+            <h4 class="errorMsg"></h4>
+            <h2 class="counter">0</h2>
+            <ul id="myList"></ul>
+          </div>
+        </div>
+
+        
+       
+      </div>
+    </div>
+  <script src="greet.js"></script>
+</body>
+</html>
