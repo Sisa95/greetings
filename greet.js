@@ -13,7 +13,11 @@ window.addEventListener("load", function(){
     getCounter = parseInt(localStorage.getItem("counter"))
     var coo = JSON.stringify(getCounter);
   
-    console.log(coo)
+   if(coo == "null"){
+    greeetCounter.innerHTML = 0
+    return
+   }
+   console.log(coo)
     greeetCounter.innerHTML = coo;
 })
 
