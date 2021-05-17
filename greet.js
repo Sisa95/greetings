@@ -3,36 +3,53 @@ var greeetCounter = document.querySelector(".counter");
 var clearText = document.querySelector(".text");
 var errorMsg = document.querySelector(".errorMsg");
 var counter = 0;
-var objData;
+var newObject = {};
+let data = [];
 
+let storeCounter;
+var getCounter;
+
+window.addEventListener("load", function(){
+    getCounter = parseInt(localStorage.getItem("counter"))
+    var coo = JSON.stringify(getCounter);
+  
+    console.log(coo)
+    greeetCounter.innerHTML = coo;
+})
 
 function greet(){
 
     var textArea = document.querySelector(".text").value;
-    let data = [] || parametr;
+    
     let list = document.getElementById("myList");
     var checkedRadioBtn = document.querySelector("input[name='language']:checked");
+    var language = checkedRadioBtn;
 
-    if(checkedRadioBtn == null && textArea == ""){
-            
-        errorMsg.style.color = "red";
-        document.querySelector(".text").style.border = "2px solid red"
-        errorMsg.innerHTML = "Please  Select Language And Enter Name"
+    var lowerCase = textArea.toLowerCase();
+    var index = textArea.charAt(0).toUpperCase(); //Changing case format of the 1st character.
+    var del = lowerCase.slice(1) //removing 1st character the name input
 
-        setTimeout(function(){ 
-            document.querySelector(".text").style.border = ""
-            errorMsg.innerHTML = ""
-        }, 1500);
+    textArea = index + del;
+
+
+    if(!data.includes(textArea)){
+
+        if(!language && textArea === ""){
+
+            errorMsg.style.color = "red";
+            document.querySelector(".text").style.border = "2px solid red"
+            errorMsg.innerHTML = "Please  Select Language And Enter Name"
         
-        return;
-    } else if (checkedRadioBtn){
-        var language = checkedRadioBtn.value;
+            setTimeout(function(){ 
+                document.querySelector(".text").style.border = ""
+                errorMsg.innerHTML = ""
+            }, 1500);
+            return
+        } else if (!language){
 
-        if(textArea == ""){
-            
         errorMsg.style.color = "red";
         document.querySelector(".text").style.border = "2px solid red"
-        errorMsg.innerHTML = "Please Enter Name"
+        errorMsg.innerHTML = "Please Select Language"
 
             setTimeout(function(){ 
                 errorMsg.style.border = "";
@@ -40,71 +57,81 @@ function greet(){
                 errorMsg.innerHTML = "";
                 document.querySelector(".text").style.border = ""
             }, 1000);
+        return;
+        } 
+
+        if(textArea === ""){
             
-            return;
+            errorMsg.style.color = "red";
+            document.querySelector(".text").style.border = "2px solid red"
+            errorMsg.innerHTML = "Please Enter Name"
+    
+                setTimeout(function(){ 
+                    errorMsg.style.border = "";
+                    errorMsg.style.fontSize = "";
+                    errorMsg.innerHTML = "";
+                    document.querySelector(".text").style.border = ""
+                }, 1000);
+               return 
+            }
+             
+            data.push(textArea)
+            newObject = {...data}
+           
+            console.log(data)
+            console.log(newObject)
+            var jsObj = localStorage.setItem("name", JSON.stringify(newObject));
+            console.log(jsObj)
+           
+            counter++;
+            storeCounter = parseInt(localStorage.setItem("counter",counter))
+            getCounter = parseInt(localStorage.getItem("counter"))
+            var coo = JSON.stringify(getCounter);
+           
+            
+            console.log(coo)
+            greeetCounter.innerHTML = coo;
+    
+            if(language.value === "english"){
+    
+                clearText.value = ""
+                list.innerHTML = "Hello," + textArea;
+    
+            } else if(language.value === "shona"){
+            
+                clearText.value = ""
+                list.innerHTML = "Mhoro," + textArea;
+                
+            } else if(language.value === "zulu"){
+    
+                clearText.value = ""
+                list.innerHTML = "Sawubona," + textArea;
+            }
+    
+        } else if(data.includes(textArea)){
+                
+            if(language.value === "english"){
+
+            clearText.value = ""
+            list.innerHTML = "Hello," + textArea;
+
+        } else if(language.value === "shona"){
+        
+            clearText.value = ""
+            list.innerHTML = "Mhoro," + textArea;
+            
+        } else if(language.value === "zulu"){
+            
+            clearText.value = ""
+            list.innerHTML = "Sawubona," + textArea;
         }
-
-
-        if(language === "english"){
-
-            clearText.value = "";
-
-            data.push(textArea)
-            
-            data.forEach((item)=>{
-            let li = document.createElement("li");
-            li.innerText = "Hello," + item;
-            list.appendChild(li);
-            counter++;
-            clearText = ""
-            greeetCounter.innerHTML = counter;
-
-
-            
-            objData = JSON.stringify(data);
-            localStorage.setItem("name", objData)
-            })
-        } else if(language === "shona"){
-            clearText.value = "";
-            data.push(textArea)
-        
-            data.forEach((item)=>{
-            let li = document.createElement("li");
-            li.innerText = "Mhoro," + item;
-            list.appendChild(li);
-            counter++;
-            clearText = ""
-            greeetCounter.innerHTML = counter;
-            })
-        } else if(language === "zulu"){
-            
-            data.push(textArea)
-        
-            data.forEach((item)=>{
-            let li = document.createElement("li");
-            li.innerText = "Sawubona," + item;
-            list.appendChild(li);
-            counter++;
-            greeetCounter.innerHTML = counter;
-            })
-        }
-       
-
-    }
-
-
-    else if(textArea !== ""){
-
-        document.querySelector(".language").style.color = "red"
-        errorMsg.innerHTML = "Please select language"
-
-        setTimeout(function(){ 
-            document.querySelector(".text").style.color = ""
-            document.querySelector(".language").style.color = ""
-            errorMsg.innerHTML = ""
-        }, 1500);
-        
     }
 }
 
+function uncheck_ (){
+    var checkedRadioBtn = document.querySelector("input[name='language']:checked");
+    checkedRadioBtn.checked = false;
+}
+
 greetButton.addEventListener("click", greet)
+greetButton.addEventListener("click", uncheck_)
