@@ -43,6 +43,7 @@ function greet(){
             errorMsg.style.color = "red";
             document.querySelector(".text").style.border = "2px solid red"
             errorMsg.innerHTML = "Please  Select Language And Enter Name"
+            greeetCounter.innerHTML = counter;
         
             setTimeout(function(){ 
                 document.querySelector(".text").style.border = ""
@@ -54,6 +55,7 @@ function greet(){
         errorMsg.style.color = "red";
         document.querySelector(".text").style.border = "2px solid red"
         errorMsg.innerHTML = "Please Select Language"
+        greeetCounter.innerHTML = counter;
 
             setTimeout(function(){ 
                 errorMsg.style.border = "";
@@ -69,6 +71,7 @@ function greet(){
             errorMsg.style.color = "red";
             document.querySelector(".text").style.border = "2px solid red"
             errorMsg.innerHTML = "Please Enter Name"
+            greeetCounter.innerHTML = counter;
     
                 setTimeout(function(){ 
                     errorMsg.style.border = "";
@@ -137,5 +140,18 @@ function uncheck_ (){
     checkedRadioBtn.checked = false;
 }
 
+window.localStorage.clear();
+
 greetButton.addEventListener("click", greet)
 greetButton.addEventListener("click", uncheck_)
+document.querySelector(".btnClear").addEventListener("click", function(){
+let list = document.getElementById("myList");
+counter = 0;
+localStorage['counter'] = counter;
+ newObject = {};
+data = [];
+greeetCounter.innerHTML = 0;
+list.innerHTML  = "";
+    
+
+})
