@@ -17,8 +17,8 @@ window.addEventListener("load", function(){
     greeetCounter.innerHTML = 0
     return
    }
-   console.log(coo)
-    greeetCounter.innerHTML = coo;
+   
+   
 })
 
 function greet(){
@@ -140,7 +140,7 @@ function uncheck_ (){
     checkedRadioBtn.checked = false;
 }
 
-window.localStorage.clear();
+//window.localStorage.clear();
 
 greetButton.addEventListener("click", greet)
 greetButton.addEventListener("click", uncheck_)
