@@ -1,43 +1,76 @@
-function greet(){
+function greetings(names){
 
-    var lowerCase, index, del, textArea;
-    var counter = 0;
-///////// error messages ////
-    //var errorMsg = document.querySelector(".errorMsg").innerHTML = "Please  Select Language And Enter Name";
+    // var counter;
+    let data = names || [];
 
+    function greet(language, textArea){
 
+        var lowerCase = textArea.toLowerCase();
+        var index = textArea.charAt(0).toUpperCase(); //Changing case format of the 1st character.
+        var del = lowerCase.slice(1) //removing 1st character the name input
 
-    var checkedRadioBtn = document.querySelector("input[name='language']:checked");
+        textArea = index + del;
 
-    function greetName(textArea){
-
-        lowerCase = textArea.toLowerCase();
-        index = textArea.charAt(0).toUpperCase(); //Changing case format of the 1st character.
-        del = lowerCase.slice(1)
-
-        return textArea = index + del
-    }
-
-    //function getGreetName(){
-    //    return textArea;
-    //}
-
-    function errorMsg(){
-        if(greetName('') == ""){
-            return "Please Enter Name"
-        } 
-    }
-
-    function errorMsg2(){
-        if(!checkedRadioBtn && greetName(textArea)){
-            return "Please Select Language";
+        if(language === "english"){
+            return "Hello, " + textArea;
+        } else if(language === "shona"){
+            return "Mhoro, " + textArea;
+            
+        } else if(language === "zulu"){
+            return "Sawubona, " + textArea;
         }
     }
 
-    return{
-        greetName,
-        errorMsg,
-        errorMsg2,
+
+    function pushNames(textArea){
+
+        var lowerCase = textArea.toLowerCase();
+        var index = textArea.charAt(0).toUpperCase(); //Changing case format of the 1st character.
+        var del = lowerCase.slice(1) //removing 1st character the name input
+
+        textArea = index + del;
+
+        if(!data.includes(textArea)){
+
+        data.push(textArea)
+     //   newObject = {...data}
+                
+        }
     }
 
+    function clearTextInput(textArea){
+        textArea = ""
+        alert(textArea)
+        return textArea
+    }
+
+    function Counter(){
+        return data.length;
+
+    }
+
+    function dataList(){
+        return data;
+    }
+
+    function errorMessages(language, textArea){
+        if(language === null && textArea === ""){
+            return "Please  Select Language And Enter Name";
+        } else if (language === null){
+            return "Please Select Language";
+        
+        } else if(textArea === ""){
+            return"Please Enter Name";
+        }
+    }
+
+
+    return{
+        greet,
+        dataList,
+        clearTextInput,
+        pushNames,
+        Counter,
+        errorMessages,
+    }
 }
