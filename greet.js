@@ -58,7 +58,6 @@ function greets(){
                 errorMsg.innerHTML = "";
                 document.querySelector(".text").style.border = ""
             }, 2500);
-            checkedRadioBtn.checked = false;
             return;
         }
     
@@ -66,7 +65,7 @@ function greets(){
         list.style.background = "white"
         list.style.width = "55%"
         list.style.margin= "auto"
-        list.style.fontSize = "1.5rem";
+        list.style.fontSize = "1.3rem";
         list.innerHTML = greetInstance.greet(language.value, textArea );
         greeetCounter.innerHTML = greetInstance.pushNames(textArea);
         localStorage.setItem("name", JSON.stringify(greetInstance.dataList()));
