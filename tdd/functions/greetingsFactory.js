@@ -1,6 +1,5 @@
 function greetings(names){
 
-    // var counter;
     let data = names || [];
 
     function greet(language, textArea){
