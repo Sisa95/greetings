@@ -11,14 +11,20 @@ describe('Greetings', function(){
         assert.equal("Mhoro, Sisa",greeting.greet("shona","sIsA"));
     });
 
-    it("Should display 0 when there are*************** no people greeted", function(){
+    it("Should display invalid name error when the entered name has special characters or numbers", function(){
+        let greeting = greetings();
+        
+        assert.equal("Invalid name",greeting.greet("shona","s!$@"));
+    });
+
+    it("Should not count a name that has as already been greeted", function(){
         let greeting = greetings();
 
         greeting.pushNames("Sisa");
+        greeting.pushNames("Sisa");
         greeting.pushNames("Ponye");
-        greeting.Counter()
         
-        assert.equal(["Sisa","Ponye"], 2);
+        assert.equal(2, greeting.Counter());
     });
 
     it("Should display 0 when there are no people greeted", function(){

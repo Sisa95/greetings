@@ -8,7 +8,15 @@ function greetings(names){
         var index = textArea.charAt(0).toUpperCase(); //Changing case format of the 1st character.
         var del = lowerCase.slice(1) //removing 1st character the name input
 
+
         textArea = index + del;
+
+        var regex = /^[A-Za-z ]+$/;
+        var isValid = regex.test(textArea);
+
+        if(!isValid){
+            return "Invalid name"; 
+        }
 
         if(language === "english"){
             return "Hello, " + textArea;

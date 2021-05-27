@@ -16,7 +16,7 @@ var greetInstance = greetings(objStore);
 function greets(){
 
     var textArea = document.querySelector(".text").value;
-    
+     
     let list = document.getElementById("myList");
     var checkedRadioBtn = document.querySelector("input[name='language']:checked");
     var language = checkedRadioBtn;
@@ -62,6 +62,18 @@ function greets(){
         }
     
     if(checkedRadioBtn){
+        var regex = /^[A-Za-z ]+$/;
+        var isValid = regex.test(textArea);
+        if(!isValid){
+            errorMsg.style.color = "red";
+            errorMsg.innerHTML = greetInstance.greet(language, textArea)
+            setTimeout(function(){ 
+                errorMsg.innerHTML = "";
+            }, 2500);
+            document.querySelector(".text").value = ""
+            return
+        }
+
         list.style.background = "white"
         list.style.width = "55%"
         list.style.margin= "auto"
