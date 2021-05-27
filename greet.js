@@ -13,13 +13,12 @@ var greetInstance = greetings(objStore);
 
 greeetCounter.innerHTML = greetInstance.Counter();
 var checkedRadioBtn = document.querySelector("input[name='language']:checked");
+var language = checkedRadioBtn
       
 function greets(){
 
     var textArea = document.querySelector(".text").value;
-    
     let list = document.getElementById("myList");
-    var language = checkedRadioBtn;
     
     if(checkedRadioBtn){
         list.style.background = "white"
