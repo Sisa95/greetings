@@ -5,21 +5,20 @@ var errorMsg = document.querySelector(".errorMsg");
 var newObject = {};
 
 let storeCounter;
-var objStore;
+ var objStore;
 if(localStorage['name']){
      objStore = JSON.parse(localStorage.getItem('name'));
 }
 var greetInstance = greetings(objStore);
 
-greeetCounter.innerHTML = greetInstance.Counter();
-var checkedRadioBtn = document.querySelector("input[name='language']:checked");
-      
+   greeetCounter.innerHTML = greetInstance.Counter();   
 
 function greets(){
 
     var textArea = document.querySelector(".text").value;
     
     let list = document.getElementById("myList");
+    var checkedRadioBtn = document.querySelector("input[name='language']:checked");
     var language = checkedRadioBtn;
 
     if(checkedRadioBtn === null && textArea === ""){
@@ -77,19 +76,6 @@ function greets(){
     checkedRadioBtn.checked = false;
   
 }
-/* Need to refactor line 26 to 63 to the function below
-
-function errorMsg_(){
-    errorMsg.style.color = "red";
-    document.querySelector(".text").style.border = "2px solid red"
-    errorMsg.innerHTML = greetInstance.errorMessages(language, textArea)
-
-    setTimeout(function(){ 
-        document.querySelector(".text").style.border = ""
-        errorMsg.innerHTML = ""
-    }, 3000);
-    return
-} */
 
 greetButton.addEventListener("click", greets)
 clear_ = document.querySelector(".btnClear").addEventListener("click", function(){
