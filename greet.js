@@ -5,61 +5,21 @@ var errorMsg = document.querySelector(".errorMsg");
 var newObject = {};
 
 let storeCounter;
- var objStore;
+var objStore;
 if(localStorage['name']){
      objStore = JSON.parse(localStorage.getItem('name'));
 }
 var greetInstance = greetings(objStore);
 
-   greeetCounter.innerHTML = greetInstance.Counter();   
-
+greeetCounter.innerHTML = greetInstance.Counter();
+var checkedRadioBtn = document.querySelector("input[name='language']:checked");
+      
 function greets(){
 
     var textArea = document.querySelector(".text").value;
     
     let list = document.getElementById("myList");
-    var checkedRadioBtn = document.querySelector("input[name='language']:checked");
     var language = checkedRadioBtn;
-
-    if(checkedRadioBtn === null && textArea === ""){
-        errorMsg.style.color = "red";
-        document.querySelector(".text").style.border = "2px solid red"
-        errorMsg.innerHTML = greetInstance.errorMessages(language, textArea)
-    
-        setTimeout(function(){ 
-            document.querySelector(".text").style.border = ""
-            errorMsg.innerHTML = ""
-        }, 3000);
-        return
-    } else if (checkedRadioBtn === null){
-    
-    errorMsg.style.color = "red";
-    document.querySelector(".text").style.border = "2px solid red"
-    errorMsg.innerHTML = "Please Select Language"
-    
-        setTimeout(function(){ 
-            errorMsg.style.border = "";
-            errorMsg.style.fontSize = "";
-            errorMsg.innerHTML = "";
-            document.querySelector(".text").style.border = ""
-        }, 1000);
-    } 
-    
-    if(textArea === ""){
-        
-        errorMsg.style.color = "red";
-        document.querySelector(".text").style.border = "2px solid red"
-        errorMsg.innerHTML = "Please Enter Name"
-    
-            setTimeout(function(){ 
-                
-                errorMsg.style.border = "";
-                errorMsg.style.fontSize = "";
-                errorMsg.innerHTML = "";
-                document.querySelector(".text").style.border = ""
-            }, 2500);
-            return;
-        }
     
     if(checkedRadioBtn){
         list.style.background = "white"
@@ -77,7 +37,22 @@ function greets(){
   
 }
 
+function errorMsg_(){
+    if(checkedRadioBtn === null && textArea === ""){
+        errorMsg.style.color = "red";
+        document.querySelector(".text").style.border = "2px solid red"
+        errorMsg.innerHTML = greetInstance.errorMessages(language, textArea)
+    
+        setTimeout(function(){ 
+            document.querySelector(".text").style.border = ""
+            errorMsg.innerHTML = ""
+        }, 3000);
+        return
+    }
+}
+
 greetButton.addEventListener("click", greets)
+greetButton.addEventListener("click", errorMsg_)
 clear_ = document.querySelector(".btnClear").addEventListener("click", function(){
     let list = document.getElementById("myList");
     newObject = {};

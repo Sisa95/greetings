@@ -32,8 +32,6 @@ function greetings(names){
         if(!data.includes(textArea)){
 
         data.push(textArea)
-     //   newObject = {...data}
-                
         }
     }
 
@@ -54,7 +52,7 @@ function greetings(names){
 
     function errorMessages(language, textArea){
         if(language === null && textArea === ""){
-            return "Please  Select Language And Enter Name";
+            return "Please Select Language And Enter Name";
         } else if (language === null){
             return "Please Select Language";
         

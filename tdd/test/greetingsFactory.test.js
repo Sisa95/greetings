@@ -2,30 +2,48 @@ describe('Greetings', function(){
     it("Should greet the person with their name", function(){
         let greeting = greetings();
         
+        assert.equal("Hello, Sisa",greeting.greet("english","sisa"));
+    });
+
+    it("Should change input case, only the first character should in upper case", function(){
+        let greeting = greetings();
         
+        assert.equal("Mhoro, Sisa",greeting.greet("shona","sIsA"));
+    });
+
+    it("Should display 0 when there are*************** no people greeted", function(){
+        let greeting = greetings();
+
+        greeting.pushNames("Sisa");
+        greeting.pushNames("Ponye");
+        greeting.Counter()
         
-        assert.equal("Molo, Sisa",greeting.greet("sisa"));
+        assert.equal(["Sisa","Ponye"], 2);
+    });
+
+    it("Should display 0 when there are no people greeted", function(){
+        let greeting = greetings();
+
+        greeting.dataList();
+        
+        assert.equal(0 , greeting.dataList());
     });
 
     it("Should return an error message \"Please Enter Name\"", function(){
         let greeting = greetings();
-
-        greeting.greet("");
         
-        assert.equal("Please Enter Name",greeting.errorMessages());
+        assert.equal("Please Enter Name",greeting.errorMessages("english", ""));
     });
 
     it("Should return an error message \"Please Select Language\"", function(){
         let greeting = greetings();
         
-        assert.equal("Please Select Language",greeting.errorMessages());
+        assert.equal("Please Select Language",greeting.errorMessages(null, "Sisa"));
     });
 
-    it("Should return an error message \"Please Select Language\"", function(){
+    it("Should return an error message \"Please Enter Name and Select Language\"", function(){
         let greeting = greetings();
         
-        greeting.greet("Hello, Moddy");
-
-        assert.equal(1, greeting.Counter());
+        assert.equal("Please Select Language And Enter Name", greeting.errorMessages(null, ""));
     });
 });
