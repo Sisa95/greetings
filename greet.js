@@ -38,17 +38,15 @@ function greets(){
 }
 
 function errorMsg_(){
-    if(checkedRadioBtn === null && textArea === ""){
-        errorMsg.style.color = "red";
-        document.querySelector(".text").style.border = "2px solid red"
-        errorMsg.innerHTML = greetInstance.errorMessages(language, textArea)
-    
-        setTimeout(function(){ 
-            document.querySelector(".text").style.border = ""
-            errorMsg.innerHTML = ""
-        }, 3000);
-        return
-    }
+    errorMsg.style.color = "red";
+    document.querySelector(".text").style.border = "2px solid red"
+    errorMsg.innerHTML = greetInstance.errorMessages(language, textArea)
+
+    setTimeout(function(){ 
+        document.querySelector(".text").style.border = ""
+        errorMsg.innerHTML = ""
+    }, 3000);
+    return
 }
 
 greetButton.addEventListener("click", greets)
