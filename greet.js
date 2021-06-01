@@ -2,22 +2,23 @@ var greetButton = document.querySelector(".btn");
 var greeetCounter = document.querySelector(".counter");
 var clearText = document.querySelector(".text");
 var errorMsg = document.querySelector(".errorMsg");
+let greetedNames = document.getElementById("myList2");
 var newObject = {};
+var count = 0;
 
-let storeCounter;
- var objStore;
 if(localStorage['name']){
-     objStore = JSON.parse(localStorage.getItem('name'));
+    var objStore = JSON.parse(localStorage.getItem('name'));
 }
 var greetInstance = greetings(objStore);
 
    greeetCounter.innerHTML = greetInstance.Counter();   
-
+   var nameArr = objStore;
 function greets(){
 
     var textArea = document.querySelector(".text").value;
      
     let list = document.getElementById("myList");
+    
     var checkedRadioBtn = document.querySelector("input[name='language']:checked");
     var language = checkedRadioBtn;
 
@@ -43,6 +44,7 @@ function greets(){
             errorMsg.innerHTML = "";
             document.querySelector(".text").style.border = ""
         }, 1000);
+        return;
     } 
     
     if(textArea === ""){
@@ -67,20 +69,29 @@ function greets(){
         if(!isValid){
             errorMsg.style.color = "red";
             errorMsg.innerHTML = greetInstance.greet(language, textArea)
+            
             setTimeout(function(){ 
                 errorMsg.innerHTML = "";
             }, 2500);
             document.querySelector(".text").value = ""
             return
         }
-
+        
         list.style.background = "white"
         list.style.width = "55%"
         list.style.margin= "auto"
         list.style.fontSize = "1.3rem";
         list.innerHTML = greetInstance.greet(language.value, textArea );
+        
         greeetCounter.innerHTML = greetInstance.pushNames(textArea);
         localStorage.setItem("name", JSON.stringify(greetInstance.dataList()));
+
+        for( count; count < greetInstance.Counter(); count++){  
+            
+        let li = document.createElement("li");
+        li.innerText = nameArr[count];
+        greetedNames.appendChild(li);
+        }
 
         greeetCounter.innerHTML = greetInstance.Counter();   
     } 
